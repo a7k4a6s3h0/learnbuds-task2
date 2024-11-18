@@ -85,7 +85,7 @@ class UpdateRegistrationView(CheckRolePermission, FormView):
 
 
 class DeleteRegistrationView(CheckRolePermission, View):
-    def post(self, request, event_id, *args, **kwargs):
+    def get(self, request, event_id, *args, **kwargs):
         # Get the event and the registration for the logged-in user
         event = get_object_or_404(Event, id=event_id)
         registration = get_object_or_404(Registration, attendee=request.user, event=event)
