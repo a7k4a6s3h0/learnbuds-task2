@@ -1,0 +1,62 @@
+{% extends 'base_files/base.html' %}
+
+{% block title %}Venue Manager Dashboard{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <h1 class="text-center mb-4">Venue Manager Dashboard</h1>
+    <p class="text-center">Welcome! Manage venue details and bookings from here.</p>
+    
+    <div class="row justify-content-center">
+        <!-- Add Venue -->
+        <div class="col-md-4 mb-3">
+            <a href="{% url 'create_venue' %}" class="btn btn-success btn-lg btn-block">
+                Add Venue
+            </a>
+            <p class="text-center mt-2">Create a new venue with all necessary details.</p>
+        </div>
+
+        <!-- Edit Venue -->
+        <div class="col-md-4 mb-3">
+            <a href="{% url 'manage_venue' %}" class="btn btn-warning btn-lg btn-block">
+                Edit Venue
+            </a>
+            <p class="text-center mt-2">Update existing venue information. or delete</p>
+        </div>
+
+
+        <!-- Manage Bookings -->
+        <div class="col-md-4 mb-3">
+            <a href="{% url 'manage_bookings' %}" class="btn btn-info btn-lg btn-block">
+                Manage Bookings
+            </a>
+            <p class="text-center mt-2">View and handle venue booking details.</p>
+        </div>
+
+        <!-- Manage availability -->
+        <div class="col-md-4 mb-3">
+          <a href="{% url 'manage_availability' %}" class="btn btn-info btn-lg btn-block">
+              Manage availability
+          </a>
+          <p class="text-center mt-2">View and handle venue booking details.</p>
+      </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+
+{% if messages %}
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        {% for message in messages %}
+            Swal.fire({
+                title: 'Alert..!',
+                text: "{{ message }}",
+                icon: "{{ message.tags }}"
+            });
+        {% endfor %}
+    });
+    </script>
+{% endif %}
+{% endblock scripts %}

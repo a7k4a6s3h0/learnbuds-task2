@@ -1,0 +1,33 @@
+{% extends 'base_files/base.html' %}
+
+{% block title %}Update Venue{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <h1 class="text-center mb-4">Update Venue</h1>
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <form method="post">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <button type="submit" class="btn btn-success btn-block">Update Venue</button>
+            </form>
+        </div>
+        {% if form.errors%}
+    <div class="alert alert-danger" role="alert">
+          {% for field, errors in form.errors.items %}
+          {% if field and field != '__all__' %}
+          <div>
+              {{field }}: {{ errors|join:', ' }}
+          </div>
+          {% else %}
+          <div>
+              {{ errors|join:', ' }}
+          </div>
+          {% endif %}
+          {% endfor %}
+    </div>
+{% endif %}   
+    </div>
+</div>
+{% endblock %}

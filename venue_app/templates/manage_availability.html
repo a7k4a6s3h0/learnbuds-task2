@@ -1,0 +1,29 @@
+{% extends 'base_files/base.html' %}
+
+{% block title %}Manage Venue Availability{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <h2 class="text-center">Manage Venue Availability</h2>
+    <form method="post" class="mt-4">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="btn btn-success btn-block">Save Availability</button>
+    </form>
+    {% if form.errors%}
+    <div class="alert alert-danger" role="alert">
+          {% for field, errors in form.errors.items %}
+          {% if field and field != '__all__' %}
+          <div>
+              {{field }}: {{ errors|join:', ' }}
+          </div>
+          {% else %}
+          <div>
+              {{ errors|join:', ' }}
+          </div>
+          {% endif %}
+          {% endfor %}
+    </div>
+{% endif %}   
+</div>
+{% endblock %}

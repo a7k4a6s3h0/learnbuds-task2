@@ -1,0 +1,52 @@
+{% extends 'base_files/base.html' %}
+
+{% block title %}Admin Dashboard{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <h1 class="text-center mb-4">Admin Dashboard</h1>
+    <p class="text-center">Welcome to the admin dashboard! Here you can manage users, including creating, updating, deleting, and viewing all users. Click the buttons below to perform the desired actions.</p>
+    
+    <div class="row justify-content-center">
+        <!-- Create User Button -->
+        <div class="col-md-4 mb-3">
+            <a href="{% url 'create_user' %}" class="btn btn-primary btn-lg btn-block">
+                Create User
+            </a>
+            <p class="text-center mt-2">Create new users such as organizers, attendees, and venue managers.</p>
+        </div>
+        
+        
+        <!-- View All Users Button -->
+        <div class="col-md-4 mb-3">
+            <a href="{% url 'view_users' %}" class="btn btn-info btn-lg btn-block">
+                View All Users
+            </a>
+            <p class="text-center mt-2">View and manage all existing users in the system.</p>
+        </div>
+    </div>
+</div>
+{% endblock %}
+{% block footer %}
+{% include "widget/footer/footer.html" %}
+{% endblock footer %}
+
+{% block scripts %}
+
+
+
+
+{% if messages %}
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        {% for message in messages %}
+            Swal.fire({
+                title: 'Alert..!',
+                text: "{{ message }}",
+                icon: "{{ message.tags }}"
+            });
+        {% endfor %}
+    });
+    </script>
+{% endif %}
+{% endblock scripts %}

@@ -1,0 +1,27 @@
+{% extends "base_files/base.html" %}
+
+{% block title %}Update Registration{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <h1 class="text-center mb-4">Update Your Registration</h1>
+
+    <div class="card">
+        <div class="card-header">
+            <h4>Event: {{ registration.event.name }}</h4>
+        </div>
+        <div class="card-body">
+            <p><strong>Description:</strong> {{ registration.event.description }}</p>
+            <p><strong>Date:</strong> {{ registration.event.date }}</p>
+            <p><strong>Time:</strong> {{ registration.event.time }}</p>
+            <p><strong>Venue:</strong> {{ registration.event.venue.name }}</p>
+
+            <form method="post" action="{% url 'update_registration' registration.id %}">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <button type="submit" class="btn btn-primary">Update Status</button>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

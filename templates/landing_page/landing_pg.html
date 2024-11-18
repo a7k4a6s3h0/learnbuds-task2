@@ -1,0 +1,68 @@
+{% extends "base_files/base.html" %}
+{% load static %}
+{% block title %}Event Management System{% endblock title %}
+
+{% block style %}
+
+{% endblock style %}
+
+{% block content %}
+<!-- Hero Section -->
+<div class="hero-section">
+  <div class="container">
+    <h1 class="display-4">Plan, Manage, and Succeed</h1>
+    <p class="lead">Your one-stop solution for managing events, venues, and attendees effortlessly.</p>
+    <a href="{% url 'login' %}" class="btn btn-light btn-lg">Get Started</a>
+  </div>
+</div>
+
+<!-- Features Section -->
+<section id="features" class="py-5">
+  <div class="container text-center">
+    <h2 class="mb-4">Why Choose Us?</h2>
+    <div class="row">
+      <div class="col-md-4">
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title">Event Organizer</h5>
+            <p class="card-text">Full control over event planning and attendee management.</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title">Venue Manager</h5>
+            <p class="card-text">Easily manage venue availability and bookings.</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title">Attendee</h5>
+            <p class="card-text">Discover and register for exciting events near you.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- About Section -->
+<section id="about" class="py-5 bg-light">
+  <div class="container text-center">
+    <h2>About Us</h2>
+    <p class="lead">We provide a robust platform for seamless event management, catering to diverse roles and ensuring an intuitive user experience.</p>
+  </div>
+</section>
+{% endblock content %}
+
+{% block footer %}
+{% include "widget/footer/footer.html" %}
+{% endblock footer %}
+{% block scripts %}
+<script>
+  // Add any specific JavaScript here if needed
+</script>
+{% endblock scripts %}

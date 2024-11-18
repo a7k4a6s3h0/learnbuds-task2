@@ -1,0 +1,65 @@
+{% extends 'base_files/base.html' %}
+
+{% block title %}Event Organizer Dashboard{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <h1 class="text-center mb-4">Event Organizer Dashboard</h1>
+    
+    <p class="text-center mb-5">As an Event Organizer, you have full access to the system. You can manage event details, attendee registrations, assign venues, and create accounts for Venue Managers.</p>
+
+    <div class="row justify-content-center">
+        <!-- Manage Events Button -->
+        <div class="col-md-4 mb-3">
+            <a href="{% url 'manage_events' %}" class="btn btn-primary btn-lg btn-block">
+                Manage Events
+            </a>
+            <p class="mt-2 text-center">View, and update event details.</p>
+        </div>
+        
+        <!-- Manage Attendees Button -->
+
+        <div class="col-md-4 mb-3">
+            <a href="{% url 'create_event' %}" class="btn btn-info btn-lg btn-block">
+                Create Event
+            </a>
+            <p class="mt-2 text-center">Create Events.</p>
+        </div>
+        
+        <!-- Assign Venues Button -->
+        <div class="col-md-4 mb-3">
+            <a href="{% url 'manage_venue' %}" class="btn btn-warning btn-lg btn-block">
+                manage Venues
+            </a>
+            <p class="mt-2 text-center">Assign venues to your events.</p>
+        </div>
+        
+        <!-- Create Venue Manager Button -->
+        <div class="col-md-4 mb-3">
+            <a href="{% url 'create_venue' %}" class="btn btn-success btn-lg btn-block">
+                Create Venue Manager
+            </a>
+            <p class="mt-2 text-center">Create and manage Venue Manager accounts.</p>
+        </div>
+    </div>
+</div>
+{% endblock %}
+{% block scripts %}
+
+
+
+
+{% if messages %}
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        {% for message in messages %}
+            Swal.fire({
+                title: 'Alert..!',
+                text: "{{ message }}",
+                icon: "{{ message.tags }}"
+            });
+        {% endfor %}
+    });
+    </script>
+{% endif %}
+{% endblock scripts %}

@@ -1,0 +1,75 @@
+{% extends "base_files/base.html" %}
+{% load static %}
+{% block title %}Create User Page{% endblock title %}
+
+{% block style %}
+
+{% endblock style %}
+
+{% block content %}
+
+<div class="container mt-5">
+  <h2>Create New User</h2>
+  <form method="POST">
+      {% csrf_token %}
+      <div class="mb-3">
+          {{ form.username }}
+      </div>
+      <div class="mb-3">
+          {{ form.password }}
+      </div>
+      <div class="mb-3">
+          {{ form.confirm_password }}
+      </div>
+      <div class="mb-3">
+          {{ form.email }}
+      </div>
+      <div class="mb-3">
+          {{ form.first_name }}
+      </div>
+      <div class="mb-3">
+          {{ form.last_name }}
+      </div>
+      <div class="mb-3">
+          {{ form.role }}
+      </div>
+      <button type="submit" class="btn btn-primary">Create User</button>
+  </form>
+  {% if form.errors%}
+    <div class="alert alert-danger" role="alert">
+          {% for field, errors in form.errors.items %}
+          {% if field and field != '__all__' %}
+          <div>
+              {{field }}: {{ errors|join:', ' }}
+          </div>
+          {% else %}
+          <div>
+              {{ errors|join:', ' }}
+          </div>
+          {% endif %}
+          {% endfor %}
+    </div>
+{% endif %}    
+</div>
+
+{% endblock content %}
+
+{% block footer %}
+{% comment %} {% include "widget/footer/footer.html" %} {% endcomment %}
+{% endblock footer %}
+
+{% block scripts %}
+{% if messages %}
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        {% for message in messages %}
+            Swal.fire({
+                title: 'Alert..!',
+                text: "{{ message }}",
+                icon: "{{ message.tags }}"
+            });
+        {% endfor %}
+    });
+    </script>
+{% endif %}
+{% endblock scripts %}

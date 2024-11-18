@@ -1,0 +1,27 @@
+{% extends "base_files/base.html" %}
+
+{% block title %}Register for Event{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <h1 class="text-center mb-4">{{ event.name }}</h1>
+
+    <div class="card mb-4">
+        <div class="card-header">
+            <h5>Event Details</h5>
+        </div>
+        <div class="card-body">
+            <p><strong>Description:</strong> {{ event.description }}</p>
+            <p><strong>Date:</strong> {{ event.date }}</p>
+            <p><strong>Time:</strong> {{ event.time }}</p>
+            <p><strong>Venue:</strong> {{ event.venue.name }}</p>
+
+            <form method="post" action="{% url 'register_event' event.id %}">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <button type="submit" class="btn btn-primary">Register for Event</button>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}
