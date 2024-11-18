@@ -59,11 +59,11 @@ class UpdateEventView(CheckRolePermission , UpdateView):
 
 def DeleteEventView(request, event_id):
     # Instantiate CheckRolePermission to check permissions
-    permission_check = CheckRolePermission()
+    # permission_check = CheckRolePermission()
     
    
-    if not permission_check.test_func():
-        return HttpResponseForbidden("You do not have permission to delete users.")
+    # if not permission_check.test_func():
+    #     return HttpResponseForbidden("You do not have permission to delete users.")
     event = Event.objects.get(id=event_id)
     event.delete()
     return reverse_lazy('events_home')

@@ -40,6 +40,15 @@
           </a>
           <p class="text-center mt-2">View and handle venue booking details.</p>
       </div>
+
+      <div class="col-md-4 mb-3">
+        <form method="post" action="{% url 'logout' %}">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-danger">Logout</button>
+        </form>
+    </div>
+
+    
     </div>
 </div>
 {% endblock %}

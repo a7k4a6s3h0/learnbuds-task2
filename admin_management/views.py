@@ -14,9 +14,9 @@ from manage_accounts.permissions import CheckRolePermission, get_user_home_url
 # Create your views here.
 
 def admin_home(request):
-    url = get_user_home_url(request.user)
-    if url:
-        return redirect(url)
+    # url = get_user_home_url(request.user)
+    # if url:
+    #     return redirect(url)
     return render(request, 'admin_home.html')
 
 
@@ -57,11 +57,11 @@ class UpdateUserView(CheckRolePermission, UpdateView):
 
 def delete_user(request, user_id):
     # Instantiate CheckRolePermission to check permissions
-    permission_check = CheckRolePermission()
+    # permission_check = CheckRolePermission()
     
     
-    if not permission_check.test_func():
-        return HttpResponseForbidden("You do not have permission to delete users.")
+    # if not permission_check.test_func():
+    #     return HttpResponseForbidden("You do not have permission to delete users.")
     user = get_object_or_404(User, id=user_id)
     user.delete()
     messages.success(request, 'User deleted successfully!')
@@ -70,10 +70,9 @@ def delete_user(request, user_id):
 
 def view_users(request):
     # Instantiate CheckRolePermission to check permissions
-    permission_check = CheckRolePermission()
+    # permission_check = CheckRolePermission()
     
-    
-    if not permission_check.test_func():
-        return HttpResponseForbidden("You do not have permission to access this page.")
+    # if not permission_check.test_func():
+    #     return HttpResponseForbidden("You do not have permission to access this page.")
     users = User.objects.all()
     return render(request, 'view_users.html', {'users': users})

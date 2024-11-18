@@ -41,6 +41,13 @@
             </a>
             <p class="mt-2 text-center">Create and manage Venue Manager accounts.</p>
         </div>
+
+        <div class="col-md-4 mb-3">
+            <form method="post" action="{% url 'logout' %}">
+                {% csrf_token %}
+                <button type="submit" class="btn btn-danger">Logout</button>
+            </form>
+        </div>
     </div>
 </div>
 {% endblock %}

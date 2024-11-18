@@ -6,12 +6,13 @@ from django.contrib import messages
 from .models import Venue, VenueAvailability, Booking
 from .forms import VenueUpdateForm, VenueAvailabilityForm, BookingForm
 from django.views.generic import TemplateView
+from manage_accounts.permissions import CheckRolePermission
 
 
 class VenueHome(TemplateView):
     template_name = 'venue_home.html'
 
-class VenueUpdateView(UpdateView):
+class VenueUpdateView(CheckRolePermission, UpdateView):
     model = Venue
     form_class = VenueUpdateForm
     template_name = 'update_venue.html'
@@ -33,7 +34,7 @@ def VenueDeleteView(request, venue_id):
     return reverse_lazy('manage_venue')  
 
 
-class ManageAvailabilityView(FormView):
+class ManageAvailabilityView(CheckRolePermission, FormView):
     template_name = 'manage_availability.html'
     form_class = VenueAvailabilityForm
     success_url = reverse_lazy('venue_home')
@@ -47,7 +48,7 @@ class ManageAvailabilityView(FormView):
         messages.error(self.request, 'Failed to create the VenueAvailability. Please correct the errors below.')
         return super().form_invalid(form)
     
-class UpdateAvailabilityView(UpdateView):
+class UpdateAvailabilityView(CheckRolePermission, UpdateView):
     model = VenueAvailability
     form_class = VenueAvailabilityForm
     template_name = 'update_availability.html'
@@ -70,7 +71,7 @@ def AvailabilityDeleteView(request, availability_id):
     messages.success(request, 'Availability deleted successfully!')
     return redirect(reverse_lazy('manage_venue'))  
 
-class ManageBookingsView(FormView):
+class ManageBookingsView(CheckRolePermission, FormView):
     form_class = BookingForm
     template_name = 'manage_bookings.html'
     success_url = reverse_lazy('venue_home')  
@@ -84,7 +85,7 @@ class ManageBookingsView(FormView):
         messages.error(self.request, 'Failed to create the Booking. Please correct the errors below.')
         return super().form_invalid(form)  
     
-class UpdateBookingView(UpdateView):
+class UpdateBookingView(CheckRolePermission, UpdateView):
     model = Booking
     form_class = BookingForm
     template_name = 'update_booking.html'
@@ -108,7 +109,7 @@ def DeleteBookingView(request, booking_id):
     messages.success(request, 'Booking deleted successfully!')
     return redirect(reverse_lazy('manage_venue'))
 
-class VenueMoreDetails(TemplateView):
+class VenueMoreDetails(CheckRolePermission, TemplateView):
     template_name = 'venue_more_details.html'
 
     def get_context_data(self, **kwargs):

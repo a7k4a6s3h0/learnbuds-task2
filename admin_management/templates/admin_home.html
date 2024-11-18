@@ -15,6 +15,13 @@
             </a>
             <p class="text-center mt-2">Create new users such as organizers, attendees, and venue managers.</p>
         </div>
+
+        <div class="col-md-4 mb-3">
+            <form method="post" action="{% url 'logout' %}">
+                {% csrf_token %}
+                <button type="submit" class="btn btn-danger">Logout</button>
+            </form>
+        </div>
         
         
         <!-- View All Users Button -->
@@ -28,7 +35,7 @@
 </div>
 {% endblock %}
 {% block footer %}
-{% include "widget/footer/footer.html" %}
+{% comment %} {% include "widget/footer/footer.html" %} {% endcomment %}
 {% endblock footer %}
 
 {% block scripts %}
